@@ -1,0 +1,38 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 400,
+    "height": 400,
+    "title": "Total Waste Production by Sector (kg)",
+    "config": {
+        "legend": {
+            "disable": true
+        }
+    },
+    "layer": [
+        {
+            "data": {
+                "url": "vega/data/waste_types_cleaned2.csv",
+                "format": "csv"
+            },
+            "mark": {
+                "type": "bar"
+            },
+            "encoding": {
+                "color": {
+                    "field": "Sector",
+                    "scale": {
+                        "scheme": "dark2"
+                    }
+                },
+                "y": {
+                    "field": "Sector",
+                    "type": "nominal"
+                },
+                "x": {
+                    "field": "Total",
+                    "type": "quantitative"
+                }
+            }
+        }
+    ]
+}
