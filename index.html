@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Import purecss -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
+        integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/page.css">
+
+    <!-- Import Vega-->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+    <script src="vega/vega_lite_vis.js"></script>
+
+    <!-- Import fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+    <title>How Wasteful Are Victorians?</title>
+</head>
+
+<body>
+
+    <div class="page">
+        <div class="pure-g">
+
+            <div class="pure-u-1-1" id="titleblock">
+                <h1>How Wasteful Are Victorians?</h1>
+                <p>With fast fashion and disposable tech, the amount of waste being produced in Victoria is skyrocketing.</p>
+            </div>
+
+            <div class="pure-u-1-1" id="subtitleblock">
+                <h2>The Worst Contributers</h3>
+                    <p>This map shows which local government areas are the biggest waste producers per capita.</p>
+                    <p><b>Bass Coast Shire</b> is the worst culprit, with each resident producing an average of 536 kg
+                        of waste per year, followed closely by <b>Buloke Shire</b> producing 493 kg of waste per year.
+                        The <b>City of Latrobe</b> comes in 3rd at 451 kg of waste per year.</p>
+            </div>
+            <div class="pure-u-1-1">
+                <div id="map" class="vis-container"></div>
+            </div>
+
+            <div class="pure-u-1-1" id="subtitleblock">
+                <h2>Not All Waste Is Created Equally</h3>
+                    <p>
+                        Garbage that is destined for landfill is more harmful to the environment than recyclables and organics. Whilst garbage is still the dominant waste type in most areas, the amount of recycling and organics in metropolitan regions is on the rise.
+                    </p>
+                    <p>
+                        Select a region from the dropdown below to see which LGA's have the best recycling habits.
+                    </p>
+            </div>
+            <div class="pure-u-1-1">
+                <div id="bar" class="vis-container"></div>
+            </div>
+
+            <div class="pure-u-1-1" id="subtitleblock">
+                <h2>It's Getting Worse</h3>
+                    <p>Data obtained from the City of Melbourne shows that the amount of waste generated year on year is
+                        increasing.</p>
+            </div>
+            <div class="pure-u-1-1">
+                <div id="line" class="vis-container"></div>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>Created by Joseph Chim - 32464592 - FIT3179</p>
+        </footer>
+    </div>
+</body>
+
+</html>

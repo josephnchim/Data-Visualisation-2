@@ -1,0 +1,91 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+    "data": {
+        "url": "vega/data/waste-collected-per-month.csv"
+    },
+    "transform": [
+        {
+            "fold": [
+                "residential",
+                "commingled_recycling",
+                "cardboard",
+                "hardwaste_total"
+            ],
+            "as": [
+                "waste_type",
+                "total"
+            ]
+        }
+    ],
+    "vconcat": [
+        {
+            "width": 480,
+            "mark": "line",
+            "encoding": {
+                "x": {
+                    "field": "date",
+                    "type": "temporal",
+                    "scale": {
+                        "domain": {
+                            "param": "brush"
+                        }
+                    },
+                    "title": null
+                },
+                "y": {
+                    "field": "total",
+                    "type": "quantitative",
+                    "title": "Waste (tonnes)"
+                },
+                "color": {
+                    "field": "waste_type",
+                    "type": "nominal",
+                    "legend": {
+                        "labelExpr": "{'residential': 'Residential', 'commingled_recycling': 'Recycling', 'hardwaste_total': 'Hard Waste', 'cardboard': 'Cardboard'}[datum.label]",
+                        "title": "Waste Type"
+                    },
+                    "scale": {
+                        "domain": ["residential", "commingled_recycling", "hardwaste_total", "cardboard"],
+                        "range": ["#ED1C24", "#FFBF00", "#696969", "#1E90FF"]
+                    }
+                }
+            }
+        },
+        {
+            "width": 480,
+            "height": 60,
+            "mark": "line",
+            "params": [
+                {
+                    "name": "brush",
+                    "select": {
+                        "type": "interval",
+                        "encodings": [
+                            "x"
+                        ]
+                    }
+                }
+            ],
+            "encoding": {
+                "x": {
+                    "field": "date",
+                    "type": "temporal",
+                    "title": "Date"
+                },
+                "y": {
+                    "field": "total",
+                    "type": "quantitative",
+                    "axis": {
+                        "tickCount": 3,
+                        "grid": false
+                    },
+                    "title": "Waste (tonnes)"
+                },
+                "color": {
+                    "field": "waste_type",
+                    "type": "nominal"
+                }
+            }
+        }
+    ]
+}

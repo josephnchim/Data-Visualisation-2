@@ -1,0 +1,83 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Waste Collection by Council - Select Region",
+  "width": "container",
+  "data": {
+    "url": "vega/data/Victorian-local-government-waste-data-release-notes-2025.02.csv",
+    "format": {"type": "csv"}
+  },
+  "params": [
+    {
+      "name": "region_select",
+      "bind": {
+        "input": "select",
+        "value": "Metropolitan",
+        "options": [
+          "Metropolitan",
+          "Gippsland", 
+          "Goulburn Ovens Murray",
+          "Great South Coast Barwon",
+          "Loddon Campaspe Mallee",
+          "Wimmera Southern Mallee Central Highlands",
+          "Unincorporated"
+        ],
+        "labels": [
+          "Metropolitan",
+          "Gippsland",
+          "Goulburn Ovens Murray",
+          "Great South Coast Barwon", 
+          "Loddon Campaspe Mallee",
+          "Wimmera Southern Mallee Central Highlands",
+          "Unincorporated"
+        ],
+        "name": "Select Region: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "fold": [
+        "garbage_collected_total_tonnes",
+        "kerbside_recycling_total_collected_tonnes", 
+        "kerbside_organics_collected_tonnes"
+      ],
+      "as": ["waste_type", "tonnage"]
+    },
+    {
+      "filter": "datum.Region === region_select"
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "y": {
+      "field": "council",
+      "type": "nominal",
+      "title": "Council",
+      "sort": {"field": "tonnage", "order": "descending"}
+    },
+    "x": {
+      "field": "tonnage",
+      "type": "quantitative",
+      "title": "Total Tonnes",
+      "axis": {"format": "~s"}
+    },
+    "color": {
+      "field": "waste_type",
+      "type": "nominal",
+      "title": "Waste Type",
+      "scale": {
+        "domain": ["garbage_collected_total_tonnes", "kerbside_recycling_total_collected_tonnes", "kerbside_organics_collected_tonnes"],
+        "range": ["#8B0000", "#FFBF00", "#008000"]
+      },
+      "legend": {
+        "orient": "top",
+        "labelExpr": "{'garbage_collected_total_tonnes': 'Garbage', 'kerbside_recycling_total_collected_tonnes': 'Recycling', 'kerbside_organics_collected_tonnes': 'Organics'}[datum.label]"
+    }
+    },
+    "tooltip": [
+      {"field": "Region", "type": "nominal", "title": "Region"},
+      {"field": "council", "type": "nominal", "title": "Council"},
+      {"field": "tonnage", "type": "quantitative", "format": ",.0f", "title": "Tonnes"}
+    ]
+  }
+}
